@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./login.css"
 
 export default class Login extends Component {
     constructor (props){
@@ -26,7 +27,7 @@ export default class Login extends Component {
         let {text} = this.state;
         console.log(React);
         return (
-            <div style={{background: "black", width: "100%", height: "400px"}}>
+            <div style={{width: "100%", height: "400px"}} class="bg">
                 <div style={{display: "flex", flexDirection: "row", width: "100%", height: "475px"}}>
                     <div style={{flex:"1", height: "100%", padding: "0% 18% 0% 18%"}}>
                         <img src={"../../../public/images/bg/hrsy-gold.png"} width={"100%"} height={"100%"} />
