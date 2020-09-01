@@ -1,12 +1,5 @@
-var React = require('react');
-var Comment = React.createClass({
-    render: ()=>{
-        return (
-            <div className="comment">
-                This is a React component!
-            </div>
-        );
-    }
-})
+const React = require('react');
 
-module.exports = Comment;
+export default class login extends React.Component{
+
+}

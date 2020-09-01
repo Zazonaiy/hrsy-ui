@@ -5,39 +5,48 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 module.exports = {
    // mode : "development",
     entry : {
-        app : ['./app/main.jsx']
+        app : [
+            //'webpack/hot/only-dev-server',
+            './app/main.jsx'
+        ]
     },
     output : {
         path : path.resolve(__dirname, "./build"),
         //publicPath : "http://127.0.0.1:22356/build",
-        filename : "bundle.js"
+        filename : "hrsy-webpack.bundle.js"
     },
     resolve : {
         extensions: ['*', '.js', '.jsx', '.json']
     },
     module : {
-        /*
-        loaders : [{reactTest:/\.jsx$/, loaders:['jsx?harmony']}],
-        //使用es6时才用到该节点
-        loaders : [{
-            reactTest : /\.jsx?$/,
-            loaders : 'babel',
-            include : path.resolve(__dirname),
-            query : {
-                //添加两个预先加载的组件，用来处理js或jsx类型的文件
-                presets : ['es2015', 'react']
-            }
-        }] */
         rules:[
             {
-                test:/\.js$/,
-                exclude:/node_modules/,
+                test:/\.jsx?$/,
+                exclude:"/node_modules/",
                 loaders:"babel-loader",
                 query:{
-                    presets:['es2015','react']
+                    presets:['react','es2015',
+                        [
+                            'env',{
+                                "targets": {
+                                    "browsers": ['> 1%', 'last 2 versions']
+                                }
+                            }
+                        ]]
+                }
+            },
+            {
+                test:/\.js$/,
+                exclude:"/node_modules/",
+                loaders:"babel-loader",
+                query:{
+                    presets:['react', 'es2015']
                 }
             }
         ]
+    },
+    externals: {
+        //引入其他类库或api，并且不会吧这些类库构建到运行时的文件中
     },
     devServer: {
         historyApiFallback: true,
@@ -45,6 +54,7 @@ module.exports = {
         inline: true,
         progress: true
     },
+    context: path.join(__dirname),
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE.ENV':"development"
@@ -53,6 +63,11 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: path.join(__dirname, "./app/build/index.html"),
             filename:"index.html"
+        }),
+        new webpack.ProvidePlugin({
+            "$" : "jquery",
+            "jQuery" : "jquery",
+            "window.jQuery" : "jquery"
         })
     ]
 };
