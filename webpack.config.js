@@ -16,7 +16,11 @@ module.exports = {
         filename : "hrsy-webpack.bundle.js"
     },
     resolve : {
-        extensions: ['*', '.js', '.jsx', 'css', '.json']
+        extensions: ['*', '.js', '.jsx', 'css', '.json'],
+        modules: [
+            path.resolve(__dirname, 'node_modules'),
+            'node_modules'    
+        ]
     },
     module : {
         rules:[
@@ -46,6 +50,22 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
+                loader: "file-loader"
+            },
+            {
+                test: /\.(woff|woff2)$/, 
+                loader: "url-loader?prefix=font/&limit=5000"
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)$/,
+                loader: "url-loader?limit=10000&mimetype=application/octet-stream"
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader?limit=10000&mimetype=image/svg+xml"
             }
         ]
     },
@@ -69,9 +89,12 @@ module.exports = {
             filename:"index.html"
         }),
         new webpack.ProvidePlugin({
-            "$" : "jquery",
-            "jQuery" : "jquery",
-            "window.jQuery" : "jquery"
+            $ : "jquery",
+            jQuery : "jquery",
+            "window.jQuery" : "jquery",
+            Popper: ['popper.js', 'default'],
+            "react-bootstrap" : "react-bootstrap"
+
         })
     ]
 };
