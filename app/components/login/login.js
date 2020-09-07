@@ -12,8 +12,9 @@ import $ from 'jquery';
 //import ControlLabel from 'react-bootstrap/Col';
 //import  'react-bootstrap/dist/react-bootstrap.js';
 //import 'react-bootstrap/dist/react-bootstrap.min.js'
-import '../../../node_modules/react-bootstrap'
+//import '../../../node_modules/react-bootstrap'
 //import Button from 'react-bootstrapButton';
+import 'react-bootstrap';
 
 
 class LoginPane extends Component {
