@@ -16,7 +16,7 @@ module.exports = {
         filename : "hrsy-webpack.bundle.js"
     },
     resolve : {
-        extensions: ['*', '.js', '.jsx', 'css', '.json'],
+        extensions: ['.js', '.jsx', '.css', '.json'],
         modules: [
             path.resolve(__dirname, 'node_modules'),
             'node_modules'    
@@ -66,6 +66,11 @@ module.exports = {
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "url-loader?limit=10000&mimetype=image/svg+xml"
+            },
+            {
+                test: /\.tsx?$/,
+                exclude: /node_modules/,
+                use: "ts-loader"
             }
         ]
     },

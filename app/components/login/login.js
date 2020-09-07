@@ -2,19 +2,10 @@ import React, {Component} from 'react';
 import "./login.css";
 import "../layout/my-layout.css";
 import $ from 'jquery';
-//import {Button, Form, FormGroup, Col, FormControl, Checkbox, ControlLabel} from 'react-bootstrap/dist/react-bootstrap.js';
-//import Button from 'react-bootstrap/lib/Button';
-//import Form from 'react-bootstrap/Form';
-//import FormGroup from 'react-bootstrap/FormGroup';
-//import Col from 'react-bootstrap/Col';
-//import FormControl from 'react-bootstrap/FormControl';
-//import Checkbox from 'react-bootstrap/Checkbox';
-//import ControlLabel from 'react-bootstrap/Col';
-//import  'react-bootstrap/dist/react-bootstrap.js';
-//import 'react-bootstrap/dist/react-bootstrap.min.js'
-//import '../../../node_modules/react-bootstrap'
-//import Button from 'react-bootstrapButton';
 import 'react-bootstrap';
+//import { Form, FormGroup, FormControl, Col, Button, ControlLabel, Checkbox } from 'react-bootstrap';
+import {Button, Form, FormGroup, Col, FormControl, Checkbox, ControlLabel, componentClass} from 'react-bootstrap';
+//const ReactDOM = require('react-dom');
 
 
 class LoginPane extends Component {
@@ -25,47 +16,75 @@ class LoginPane extends Component {
         }
     }
 
-    render(){
-        
+    formInstance(){
+        const forminstancec = (
+            <Form horizontal>
+          <FormGroup controlId="formHorizontalEmail">
+            <Col componentClass={ControlLabel} sm={2}>
+              邮件
+            </Col>
+            <Col sm={10}>
+              <FormControl type="email" placeholder="Email" />
+            </Col>
+          </FormGroup>
+      
+          <FormGroup controlId="formHorizontalPassword">
+            <Col componentClass={ControlLabel} sm={2}>
+              密码
+            </Col>
+            <Col sm={10}>
+              <FormControl type="password" placeholder="Password" />
+            </Col>
+          </FormGroup>
+      
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Checkbox>记住我</Checkbox>
+            </Col>
+          </FormGroup>
+      
+          <FormGroup>
+            <Col smOffset={2} sm={10}>
+              <Button type="submit">
+                登录
+              </Button>
+            </Col>
+          </FormGroup>
+        </Form>
+        )
+        return forminstancec
+    }
 
+    loginPane(){
+        const loginpane = (
+            <div style={{background: "rgba(255, 255, 255, 0.3)", width: "100%", height: "100%", padding: "3% 3% 3% 3%"}}>
+                <div style={{background: "white", width: "100%", height: "100%"}}>
+                    <div style={{background: "rgba(255,255,255)", height: "100%", width: "100%", boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.4)",
+                        boxSizing: "border-box", border: "3px solid"}}>
+                            
+                    </div>
+                </div>
+            </div>
+        )
+        return loginpane;
+    }
+
+    render(){
+        return (this.formInstance(), this.loginPane())
+        /*
         return (
             <div style={{background: "rgba(255, 255, 255, 0.3)", width: "100%", height: "100%", padding: "3% 3% 3% 3%"}}>
                 <div style={{background: "white", width: "100%", height: "100%"}}>
                     <div style={{background: "rgba(255,255,255)", height: "100%", width: "100%", boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.4)",
                         boxSizing: "border-box", border: "3px solid"}}>
-                            <Form horizontal>
-                <FormGroup controlId="formHorizontalEmail">
-                    <Col componentClass={ControlLabel} sm={2}>账号</Col>
-                    <Col sm={10}>
-                        <FormControl type="email" placeholder="username" />
-                    </Col>
-                </FormGroup>
-
-                <FormGroup controlId="formHorizontalPassword">
-                    <Col componentClass={ControlLabel} sm={2}>密码</Col>
-                    <Col sm={10}>
-                        <FormControl type="password" placeholder="password" />
-                    </Col>
-                </FormGroup>
-
-                <FormGroup>
-                    <Col smOffset={2} sm={10}>
-                        <Checkbox>记住密码</Checkbox>
-                    </Col>
-                </FormGroup>
-
-                <FormGroup>
-                    <Col smOffset={2} sm={10}>
-                        <Button type="submit">登录</Button>
-                    </Col>
-                </FormGroup>
-            </Form>
+                            <Button>test</Button>
                     </div>
                 </div>
             </div>
-        )
+        )*/
     }
 }
+//ReactDOM.render()
 
 class LoginInput extends Component {
     constructor (props){
