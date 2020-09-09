@@ -10,6 +10,7 @@ const ReactDOM = require('react-dom');
 //)
 
 import Login from "./components/login/login";
+import AppRouter from "./components/appRouter";
 
 
-ReactDOM.render(<Login></Login>, document.getElementById('content'));
+ReactDOM.render(<AppRouter></AppRouter>, document.getElementById('content'));

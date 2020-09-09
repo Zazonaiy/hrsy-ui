@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import "./login.css";
 import "../layout/my-layout.css";
 import $ from 'jquery';
-import 'react-bootstrap';
 //import { Form, FormGroup, FormControl, Col, Button, ControlLabel, Checkbox } from 'react-bootstrap';
-import {Button, Form, FormGroup, Col, FormControl, Checkbox, ControlLabel, componentClass} from 'react-bootstrap';
+//import {Button, Form, FormGroup, Col, FormControl, Checkbox} from 'react-bootstrap';
 //const ReactDOM = require('react-dom');
+import { FormControl, FormGroup, InputGroup, Button, Checkbox, Col, Form, ControlLabel, wellStyles, HelpBlock, Row } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 class LoginPane extends Component {
@@ -16,118 +17,169 @@ class LoginPane extends Component {
         }
     }
 
-    formInstance(){
-        const forminstancec = (
-            <Form horizontal>
-          <FormGroup controlId="formHorizontalEmail">
-            <Col componentClass={ControlLabel} sm={2}>
-              邮件
-            </Col>
-            <Col sm={10}>
-              <FormControl type="email" placeholder="Email" />
-            </Col>
-          </FormGroup>
-      
-          <FormGroup controlId="formHorizontalPassword">
-            <Col componentClass={ControlLabel} sm={2}>
-              密码
-            </Col>
-            <Col sm={10}>
-              <FormControl type="password" placeholder="Password" />
-            </Col>
-          </FormGroup>
-      
-          <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Checkbox>记住我</Checkbox>
-            </Col>
-          </FormGroup>
-      
-          <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Button type="submit">
-                登录
-              </Button>
-            </Col>
-          </FormGroup>
-        </Form>
-        )
-        return forminstancec
-    }
-
-    loginPane(){
-        const loginpane = (
-            <div style={{background: "rgba(255, 255, 255, 0.3)", width: "100%", height: "100%", padding: "3% 3% 3% 3%"}}>
-                <div style={{background: "white", width: "100%", height: "100%"}}>
-                    <div style={{background: "rgba(255,255,255)", height: "100%", width: "100%", boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.4)",
-                        boxSizing: "border-box", border: "3px solid"}}>
-                            
-                    </div>
-                </div>
-            </div>
-        )
-        return loginpane;
-    }
-
     render(){
-        return (this.formInstance(), this.loginPane())
-        /*
+        
         return (
             <div style={{background: "rgba(255, 255, 255, 0.3)", width: "100%", height: "100%", padding: "3% 3% 3% 3%"}}>
                 <div style={{background: "white", width: "100%", height: "100%"}}>
                     <div style={{background: "rgba(255,255,255)", height: "100%", width: "100%", boxShadow: "0 0 5px 5px rgba(0, 0, 0, 0.4)",
                         boxSizing: "border-box", border: "3px solid"}}>
-                            <Button>test</Button>
+                            <LoginInput></LoginInput>
                     </div>
                 </div>
             </div>
-        )*/
+        )
     }
 }
-//ReactDOM.render()
+
 
 class LoginInput extends Component {
     constructor (props){
         super(props);
         this.state = {
-
+            bsClass : 'inputButtonGroup',
+            data : {
+                loginParam : {
+                    username : 'aaa',
+                    password : '111',
+                    errorTips : '',
+                    errorHid : 'hidden'
+                },
+            },
+            style : {
+                sRow : {
+                    style : {
+                        marginLeft : '20px',
+                        marginTop : '5%'
+                    }
+                    
+                },
+                sForm : {
+                    style : {
+                        marginTop: '7%',
+                        marginBottom : '3%'
+                    }
+                },
+                sButton : {
+                    type:"button",
+                    bsStyle:"info",
+                    bsSize:"large",
+                    width : '100%'
+                }
+            }
         }
+        
     }
 
+    doLogin(username, password){
+        alert(username + " " + password);
+        if (username=='' || password==''){
+            //validationState="error"
+            this.state.data.loginParam.errorTips = '账号或者密码为空';
+            this.setState();
+        }
+        //this.setState();
+    }
+    
     render(){
-        let loginForm = (
-            <Form horizontal>
-                <FormGroup controlId="formHorizontalEmail">
-                    <Col componentClass={ControlLabel} sm={2}>账号</Col>
-                    <Col sm={10}>
-                        <FormControl type="text" placeholder="username" />
-                    </Col>
+        let {username, password, errorTips, errorHid} = this.state.data.loginParam;
+        let {sRow, sForm, sCol, sButton} = this.state.style;
+        
+        return (
+
+            <Form horizontal {...sForm}>
+                <FormGroup controlId="formHorizontalEmail" style={{ marginBottom : '20px', marginTop : '20px'}}>
+                    <Row {...sRow}>
+                        <Col componentClass={ControlLabel} sm={1}>
+                            <div style={{width:'50px', marginTop:"6px"}}>账号</div>
+                        </Col>
+                        <Col sm={9} smOffset={4}>
+                            <ControlLabel hidden={errorHid}>{errorTips}</ControlLabel>
+                            <FormControl type="text" placeholder="username" />
+                        </Col>
+                    </Row>
                 </FormGroup>
 
                 <FormGroup controlId="formHorizontalPassword">
-                    <Col componentClass={ControlLabel} sm={2}>密码</Col>
-                    <Col sm={10}>
-                        <FormControl type="password" placeholder="password" />
-                    </Col>
+                    <Row {...sRow}>
+                        <Col componentClass={ControlLabel} sm={1}>
+                            <div style={{width:'50px', marginTop:"6px"}}>密码</div>
+                        </Col>
+                        <Col sm={9} smOffset={4}>
+                            <ControlLabel hidden={errorHid} >{errorTips}</ControlLabel>
+                            <FormControl type="password" placeholder="password" />
+                        </Col>
+                    </Row>
                 </FormGroup>
 
                 <FormGroup>
-                    <Col smOffset={2} sm={10}>
-                    <   Checkbox>记住密码</Checkbox>
-                    </Col>
+                    <Row {...sRow}>
+                        <Col smOffset={2} sm={10}>
+                            <Checkbox> 记住密码</Checkbox>
+                        </Col>
+                    </Row>
                 </FormGroup>
 
                 <FormGroup>
-                    <Col smOffset={2} sm={10}>
-                        <Button type="submit">登录</Button>
-                    </Col>
+                    <Row {...sRow}>
+                        <Col sm={6}> </Col>
+                        <Col smOffset={2} sm={2} style={{textAlign:'right',}}>
+                            <Button {...sButton} onClick={this.doLogin.bind(username, password)}>
+                                登录
+                            </Button>
+                        </Col>
+                        <Col smOffset={2} sm={2} style={{textAlign:'right',}}>
+                            <Button {...sButton}>注册</Button>
+                        </Col>
+                        
+                    </Row>
                 </FormGroup>
-            </Form>)
+            </Form>
+            /*
+            <div style={{width: '100%', height: '100%', padding: '12% 4% 1% 4%'}}>
+                <div style={{display:'flex', flexDirection: 'row'}}>
+                    
+                    <div style={{width: '10%', height: '10px', paddingTop:'5px'}}><span>账号 </span></div>
+                    <FormGroup validationState="null" controlId="username" bsClass="loginInput">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            账号
+                        </Col>
+                        <ControlLabel>{errorTips}</ControlLabel>
+                        <FormControl type="text" placeholder="请输入账号" value={username} />
+                    </FormGroup>
+                    
+                </div>
+                <div style={{marginTop:'5%', display:'flex', flexDirection: 'row'}}>
+                    <div style={{width: '10%', paddingTop:'5px'}}><span>密码 </span></div>
+                    <FormGroup bsClass="loginInput">
+                        <ControlLabel>{errorTips}</ControlLabel>
+                        <FormControl type="password" placeholder="请输入密码" value={password}/>
+                    </FormGroup>
+                    
+                </div>
 
-        
-        return (
-            <div>{loginForm}</div>
-        )
+                <div style={{width:'100%', height:'100%', display:'flex', displayDirection:'column'}}>
+                    <div style={{flex:1, marginButtom:"50px"}}>
+                        <FormGroup style={{marginTop:'50px'}}>
+                            <Col smOffset={2} sm={10}>
+                                <Checkbox> 记住密码</Checkbox>
+                            </Col>
+                        </FormGroup>
+                    </div>    
+                    <div>
+                        <FormGroup bsClass='inputButtonGroup'>
+                            <Col >
+                                <Button style={{marginRight:'20px'}} bsStyle="primary" onClick={this.doLogin.bind(username, password)}>登录</Button>
+                                <Button bsStyle="primary">注册</Button>
+                            </Col>
+                        </FormGroup>
+                    </div>
+                </div>
+
+            </div>
+            */
+            
+        );
     }
 }
 
@@ -138,18 +190,7 @@ export default class Login extends Component {
             bgImg : "../../../public/images/bg/hrsy-gold.png"
         };
         
-        //this.clickTest = this.clickTest.bind(this);
     }
-
-    /*
-    clickTest(param) {
-        return (event)=>{
-            alert("click!");
-            this.state.text = "is changed !";
-            this.setState(this.state);
-        }
-    }
-    */
 
     render(){
         let {text, bgImg} = this.state;
@@ -165,8 +206,10 @@ export default class Login extends Component {
                     </div>
                 </div>
                 <div style={{width: "100%", height: "600px"}} className="bgc flex-row">
-                    <div style={{padding: "5% 30% 5% 30%", width: "100%", height: "400px"}} className="bgc">
-                        <LoginPane></LoginPane>
+                    <div style={{padding: "5% 30% 5% 30%", width: "100%", height: "600px"}} className="bgc">
+                        <LoginPane>
+                            
+                        </LoginPane>
                     </div>
                 </div>
             </div>
