@@ -135,49 +135,7 @@ class LoginInput extends Component {
                     </Row>
                 </FormGroup>
             </Form>
-            /*
-            <div style={{width: '100%', height: '100%', padding: '12% 4% 1% 4%'}}>
-                <div style={{display:'flex', flexDirection: 'row'}}>
-                    
-                    <div style={{width: '10%', height: '10px', paddingTop:'5px'}}><span>账号 </span></div>
-                    <FormGroup validationState="null" controlId="username" bsClass="loginInput">
-                        <Col componentClass={ControlLabel} sm={2}>
-                            账号
-                        </Col>
-                        <ControlLabel>{errorTips}</ControlLabel>
-                        <FormControl type="text" placeholder="请输入账号" value={username} />
-                    </FormGroup>
-                    
-                </div>
-                <div style={{marginTop:'5%', display:'flex', flexDirection: 'row'}}>
-                    <div style={{width: '10%', paddingTop:'5px'}}><span>密码 </span></div>
-                    <FormGroup bsClass="loginInput">
-                        <ControlLabel>{errorTips}</ControlLabel>
-                        <FormControl type="password" placeholder="请输入密码" value={password}/>
-                    </FormGroup>
-                    
-                </div>
 
-                <div style={{width:'100%', height:'100%', display:'flex', displayDirection:'column'}}>
-                    <div style={{flex:1, marginButtom:"50px"}}>
-                        <FormGroup style={{marginTop:'50px'}}>
-                            <Col smOffset={2} sm={10}>
-                                <Checkbox> 记住密码</Checkbox>
-                            </Col>
-                        </FormGroup>
-                    </div>    
-                    <div>
-                        <FormGroup bsClass='inputButtonGroup'>
-                            <Col >
-                                <Button style={{marginRight:'20px'}} bsStyle="primary" onClick={this.doLogin.bind(username, password)}>登录</Button>
-                                <Button bsStyle="primary">注册</Button>
-                            </Col>
-                        </FormGroup>
-                    </div>
-                </div>
-
-            </div>
-            */
             
         );
     }
