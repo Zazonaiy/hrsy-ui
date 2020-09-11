@@ -11,8 +11,8 @@ module.exports = {
         ]
     },
     output : {
-        path : path.resolve(__dirname, "./build"),
-        //publicPath : "http://127.0.0.1:22356/build",
+        path : path.resolve(__dirname, "dist"),
+        publicPath : "http://127.0.0.1:8080/",
         filename : "hrsy-webpack.bundle.js"
     },
     resolve : {

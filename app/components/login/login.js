@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import "./login.css";
 import "../layout/my-layout.css";
-import $ from 'jquery';
-//import { Form, FormGroup, FormControl, Col, Button, ControlLabel, Checkbox } from 'react-bootstrap';
-//import {Button, Form, FormGroup, Col, FormControl, Checkbox} from 'react-bootstrap';
-//const ReactDOM = require('react-dom');
 import { FormControl, FormGroup, InputGroup, Button, Checkbox, Col, Form, ControlLabel, wellStyles, HelpBlock, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import $ from 'jquery';
+import {aGet, aPost, aPut, aDelete} from '../../api/req';
 
 class LoginPane extends Component {
     constructor(props){

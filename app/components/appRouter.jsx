@@ -12,7 +12,7 @@ class AppRouter extends Component {
                     <Route exact path={rootPath+"/"} component={Home} />
                     <Route path={rootPath+"/login" } component={Login} />
                 </div>
-                <Redirect from="/*" to={rootPath+"/login"} />
+                <Redirect from="/" to={rootPath+"/login"} />
             </Router>
         )
     }
