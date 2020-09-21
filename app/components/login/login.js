@@ -69,13 +69,36 @@ class LoginInput extends Component {
     }
 
     doLogin(username, password){
-        alert(username + " " + password);
+        //alert(username + " " + password);
         if (username=='' || password==''){
             //validationState="error"
             this.state.data.loginParam.errorTips = '账号或者密码为空';
             this.setState();
         }
+        //aPost("http://127.0.0.1:32588/hrsy/login", {username:username,password:password}, res=>{console.log(res)});
         //this.setState();
+        $.ajax({
+            type:"POST",
+            async:true,
+            url:"http://localhost:32588/hrsy/login",
+            //dataType : "jsonp",
+            //jsonp : "param",
+            json : "param",
+            data : {
+                username : "aaa",
+                password : "111"
+            },
+            xhrFields : {withCredentials:true},
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("token", "yeah");
+            },
+            success : function(data){
+                console.log(data)
+            },
+            error : function(){
+
+            }
+        })
     }
     
     render(){
