@@ -77,6 +77,7 @@ class LoginInput extends Component {
         }
         //aPost("http://127.0.0.1:32588/hrsy/login", {username:username,password:password}, res=>{console.log(res)});
         //this.setState();
+        /*
         $.ajax({
             type:"POST",
             async:true,
@@ -98,7 +99,11 @@ class LoginInput extends Component {
             error : function(){
 
             }
-        })
+        })*/
+        aPost("/hrsy/login", {
+            username : "aaa",
+            password : "111"
+        }, false, function(res){console.log(res)})
     }
     
     render(){
